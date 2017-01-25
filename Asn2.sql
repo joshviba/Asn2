@@ -449,7 +449,7 @@ SELECT type, price
   HAVING COUNT(type) >= 3 AND COUNT(price) >= 3;
 
 -- Q6 --
-SELECT DISTINCT guestName, Booking.roomNo, dateFrom, dateTo
+SELECT guestName, Booking.roomNo, dateFrom, dateTo
   FROM Guest
   INNER JOIN Booking
     ON Booking.guestNo = Guest.guestNo
@@ -457,6 +457,7 @@ SELECT DISTINCT guestName, Booking.roomNo, dateFrom, dateTo
     ON Hotel.hotelNo = Booking.hotelNo
   INNER JOIN Room
     ON Room.roomNo = Booking.roomNo
+    AND Room.hotelNo = Hotel.hotelNo
   WHERE  hotelName LIKE '%Grosvenor%'
     AND dateFrom <= DATE'2017-01-29'
     AND (dateTo IS NULL OR dateTo >= Date'2017-01-29');
